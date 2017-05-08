@@ -34,7 +34,10 @@
 							<h4 class="list-group-item-heading"><span course-detail-popover="section.id">{{$index + 1}}. {{section.courseNum}}</span></h4>
 							<small>{{section.title}}</small>
 							<p class="list-group-item-text label-line ">
-								<span class="label label-default label-professor" ng-bind-html="section.instructor | RMPUrl"></span>
+								<span class="label label-default label-professor" ng-click="showme=!showme"><a>{{section.instructor}}</a></span>
+								<br>
+								<span ng-show="showme" ng-bind-html="section.instructor | RMPUrl"></span>
+								<span ng-show="showme" ng-bind-html="section.instructor | RITEvalsURL"></span>
 							</p>
 							<div ng-init="parsedTimes = (section.times | parseSectionTimes)">
 								<div ng-repeat="time in parsedTimes" style="font-size:small">{{time.days}} <span style="white-space:nowrap">{{time.start | formatTime}}-{{time.end | formatTime}}</span></div>
@@ -46,9 +49,9 @@
 									<button type="button" class="btn btn-block" ng-click="section.selected = !section.selected" ng-class="{'btn-danger':section.selected, 'btn-success':!section.selected}"><i class="fa" ng-class="{'fa-minus':section.selected, 'fa-plus':!section.selected}"></i> <i class="fa fa-shopping-cart"></i></button>
 								</div>
 							</div>
-                            <div class="text-center">
-                                <div class="well-sm" style=" background-color: #ddd; margin: 8px 0;" title="Other students enrolled as of 6AM today">{{section.curenroll}}/{{section.maxenroll}} <i class="fa fa-user"></i></div>
-                            </div>
+							<div class="text-center">
+								<div class="well-sm" style=" background-color: #ddd; margin: 8px 0;" title="Other students enrolled as of 6AM today">{{section.curenroll}}/{{section.maxenroll}} <i class="fa fa-user"></i></div>
+							</div>
 						</div>
 					</div>
 				</li>
@@ -57,4 +60,3 @@
 	</div>
 	<div class="visible-xs visible-sm vert-spacer-md"></div>
 </div>
-
